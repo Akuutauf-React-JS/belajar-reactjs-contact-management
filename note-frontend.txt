@@ -1,6 +1,22 @@
+web frontend template
+- https://github.com/ProgrammerZamanNow/web-template-contact-management
+
+running backend :
+- node src/main.js
+
 setup project
 - npm create vite@latest belajar-reactjs-contact-management -- --template react
 - npm install 
 - npm install react-router
 
-gi
+react use
+- salah satu hooks library yang populer di react adalah react-use, yang berisi hooks yang bisa kita gunakan dengan mudah
+- pada materi ini, kita akan menggunakan library ini juga untuk membantu mempermudah pembuatan project
+- referensi : https://github.com/streamich/react-use
+- install library react use : npm install react-use
+
+sweet alert
+- library lain yang akan kita gunakan di project ini adalah sweet alert, ini adalah library yang bisa kita gunakan untuk menampilkan alert yang lebih baik dibandingkan alert bawaan dari browser
+- referensi : https://sweetalert2.github.io/
+- npm install sweetalert2
+
