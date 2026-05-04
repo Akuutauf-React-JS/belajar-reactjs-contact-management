@@ -1,0 +1,6 @@
+setup project
+- npm create vite@latest belajar-reactjs-contact-management -- --template react
+- npm install 
+- npm install react-router
+
+gi
