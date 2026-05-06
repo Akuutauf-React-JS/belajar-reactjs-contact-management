@@ -19,3 +19,20 @@ export const alertError = async (message) => {
     text: message,
   });
 };
+
+export const alertConfirm = async (message) => {
+  // memanggil sweet alert
+  const result = await Swal.fire({
+    icon: "question",
+    title: "Are you sure?",
+    text: message,
+    confirmButtonColor: "#d33",
+    cancelButtonColor: "#3085d6",
+    confirmButtonText: "Yes",
+    showCancelButton: true,
+    cancelButtonText: "Cancel",
+  });
+
+  // return nya berupa boolean
+  return result.isConfirmed;
+};

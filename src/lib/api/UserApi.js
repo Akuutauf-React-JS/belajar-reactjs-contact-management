@@ -19,7 +19,7 @@ export const userRegister = async ({ username, password, name }) => {
 
 // call api untuk login user
 export const userLogin = async ({ username, password }) => {
-  // memanggil endpoint untuk generate user baru
+  // memanggil endpoint untuk melakukan login oleh user
   return await fetch(`${import.meta.env.VITE_API_PATH}/users/login`, {
     method: "POST",
     headers: {
@@ -34,7 +34,7 @@ export const userLogin = async ({ username, password }) => {
 // request body diberikan simbol : '{}'
 // kalau token, langsung bisa di implementasikan seperti parameter
 export const userDetail = async (token) => {
-  // memanggil endpoint untuk generate user baru
+  // memanggil endpoint untuk mendapatkan data detail; user yang sedang login
   return await fetch(`${import.meta.env.VITE_API_PATH}/users/current`, {
     method: "GET",
     headers: {
@@ -46,7 +46,7 @@ export const userDetail = async (token) => {
 
 // call api untuk update user (hanya field name)
 export const userUpdateProfile = async (token, { name }) => {
-  // memanggil endpoint untuk generate user baru
+  // memanggil endpoint untuk update profil user
   return await fetch(`${import.meta.env.VITE_API_PATH}/users/current`, {
     method: "PATCH",
     headers: {
@@ -61,7 +61,7 @@ export const userUpdateProfile = async (token, { name }) => {
 
 // call api untuk update user (hanya field password)
 export const userUpdatePassword = async (token, { password }) => {
-  // memanggil endpoint untuk generate user baru
+  // memanggil endpoint untuk update password user
   return await fetch(`${import.meta.env.VITE_API_PATH}/users/current`, {
     method: "PATCH",
     headers: {
@@ -76,7 +76,7 @@ export const userUpdatePassword = async (token, { password }) => {
 
 // call api untuk logout user
 export const userLogout = async (token) => {
-  // memanggil endpoint untuk generate user baru
+  // memanggil endpoint untuk melakukan sign out oleh user
   return await fetch(`${import.meta.env.VITE_API_PATH}/users/logout`, {
     method: "DELETE",
     headers: {
