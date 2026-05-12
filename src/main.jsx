@@ -12,6 +12,7 @@ import ContactList from "./components/Contact/ContactList";
 import ContactEdit from "./components/Contact/ContactEdit";
 import ContactDetail from "./components/Contact/ContactDetail";
 import AddressCreate from "./components/Address/AddressCreate";
+import AddressEdit from "./components/Address/AddressEdit";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -49,6 +50,9 @@ createRoot(document.getElementById("root")).render(
               {/* route nested address */}
               <Route path="addresses">
                 <Route path="create" element={<AddressCreate />}></Route>
+
+                {/* kita gunakan alias id yang baru, karena sebelumnya sudah menggunakan route alias "id" */}
+                <Route path=":addressId/edit" element={<AddressEdit />}></Route>
               </Route>
             </Route>
           </Route>

@@ -19,7 +19,7 @@ export const addressList = async (token, id) => {
 // call api untuk mengambil data address berdasarkan contactId, dan addressId
 export const addressDetail = async (token, contactId, addressId) => {
   // memanggil endpoint untuk menghapus data contact berdasarkan id
-  return await fetch(`${import.meta.env.VITE_API_PATH}/contacts/${contactId}/addresses/:${addressId}`, {
+  return await fetch(`${import.meta.env.VITE_API_PATH}/contacts/${contactId}/addresses/${addressId}`, {
     method: "GET",
     headers: {
       Accept: "application/json",
@@ -39,5 +39,31 @@ export const addressCreate = async (token, id, { street, city, province, country
       Authorization: token,
     },
     body: JSON.stringify({ street, city, province, country, postal_code }),
+  });
+};
+
+// call api untuk mengubah data address
+export const addressUpdate = async (token, contactId, addressId, { street, city, province, country, postal_code }) => {
+  // memanggil endpoint untuk update address
+  return await fetch(`${import.meta.env.VITE_API_PATH}/contacts/${contactId}/addresses/${addressId}/`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+      Authorization: token,
+    },
+    body: JSON.stringify({ street, city, province, country, postal_code }),
+  });
+};
+
+// call api untuk hapus data address
+export const addressDelete = async (token, contactId, addressId) => {
+  // memanggil endpoint untuk menghapus data address berdasarkan id
+  return await fetch(`${import.meta.env.VITE_API_PATH}/contacts/${contactId}/addresses/${addressId}`, {
+    method: "DELETE",
+    headers: {
+      Accept: "application/json",
+      Authorization: token,
+    },
   });
 };
