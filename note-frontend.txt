@@ -27,7 +27,7 @@ implement index path (sudah)
 - cek jika user belum login, redirect ke halaman login (cek token, get user)
 - jika user sudah login, redirect ke halaman dashboard contacts
 
-validasi session di dashboard
+validasi session di dashboard (sudah)
 - di semua halaman /dashboard
 - validasi jika user belum login, redirect ke halaman login
 

@@ -14,47 +14,57 @@ import ContactDetail from "./components/Contact/ContactDetail";
 import AddressCreate from "./components/Address/AddressCreate";
 import AddressEdit from "./components/Address/AddressEdit";
 import Home from "./components/Home";
+import ProtectedRoute from "./components/Middleware/ProtectedRoute";
+import GuestRoute from "./components/Middleware/GuestRoute";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     {/* implementasi react router */}
     <BrowserRouter>
       <Routes>
-        {/* routing dibagi menjadi 2 kelompok, user guest dan user auth */}
+        {/* route path, terdapat pengecekan untuk session */}
         <Route path="/" element={<Home />}></Route>
 
+        {/* routing dibagi menjadi 2 kelompok, user guest dan user auth */}
+
         {/* route guest */}
-        {/* menambahkan layouting / template untuk guest */}
-        <Route element={<Layout />}>
-          <Route path="/register" element={<UserRegister />}></Route>
-          <Route path="/login" element={<UserLogin />}></Route>
+        {/* melakukan pengecekan session untuk user yang sudah login */}
+        <Route element={<GuestRoute />}>
+          {/* menambahkan layouting / template untuk guest */}
+          <Route element={<Layout />}>
+            <Route path="/register" element={<UserRegister />}></Route>
+            <Route path="/login" element={<UserLogin />}></Route>
+          </Route>
         </Route>
 
         {/* route auth */}
-        {/* route auth diawali dengan path '/dashboard' */}
-        <Route path="/dashboard" element={<DashboardLayout />}>
-          {/* route khusus users */}
-          <Route path="users">
-            <Route path="profile" element={<UserProfile />}></Route>
-            <Route path="logout" element={<UserLogout />}></Route>
-          </Route>
+        {/* diamankan dengan protected route, untuk pengecekan session */}
+        <Route element={<ProtectedRoute />}>
+          {/* route auth diawali dengan path '/dashboard' */}
+          <Route path="/dashboard" element={<DashboardLayout />}>
+            {/* route khusus users */}
+            <Route path="users">
+              <Route path="profile" element={<UserProfile />}></Route>
+              <Route path="logout" element={<UserLogout />}></Route>
+            </Route>
 
-          {/* route khusus contacts */}
-          <Route path="contacts">
-            <Route index element={<ContactList />}></Route>
-            <Route path="create" element={<ContactCreate />}></Route>
+            {/* route khusus contacts */}
+            <Route path="contacts">
+              <Route index element={<ContactList />}></Route>
+              <Route path="create" element={<ContactCreate />}></Route>
 
-            {/* route nested contact detail */}
-            <Route path=":id">
-              <Route index element={<ContactDetail />}></Route>
-              <Route path="edit" element={<ContactEdit />}></Route>
+              {/* route nested contact detail */}
+              <Route path=":id">
+                <Route index element={<ContactDetail />}></Route>
+                <Route path="edit" element={<ContactEdit />}></Route>
 
-              {/* route nested address */}
-              <Route path="addresses">
-                <Route path="create" element={<AddressCreate />}></Route>
+                {/* route nested address */}
+                <Route path="addresses">
+                  <Route path="create" element={<AddressCreate />}></Route>
 
-                {/* kita gunakan alias id yang baru, karena sebelumnya sudah menggunakan route alias "id" */}
-                <Route path=":addressId/edit" element={<AddressEdit />}></Route>
+                  {/* kita gunakan alias id yang baru, karena sebelumnya sudah menggunakan route alias "id" */}
+                  <Route path=":addressId/edit" element={<AddressEdit />}></Route>
+                </Route>
               </Route>
             </Route>
           </Route>
