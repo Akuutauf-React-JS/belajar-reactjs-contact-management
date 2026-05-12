@@ -13,6 +13,7 @@ import ContactEdit from "./components/Contact/ContactEdit";
 import ContactDetail from "./components/Contact/ContactDetail";
 import AddressCreate from "./components/Address/AddressCreate";
 import AddressEdit from "./components/Address/AddressEdit";
+import Home from "./components/Home";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -20,8 +21,9 @@ createRoot(document.getElementById("root")).render(
     <BrowserRouter>
       <Routes>
         {/* routing dibagi menjadi 2 kelompok, user guest dan user auth */}
-        {/* route guest */}
+        <Route path="/" element={<Home />}></Route>
 
+        {/* route guest */}
         {/* menambahkan layouting / template untuk guest */}
         <Route element={<Layout />}>
           <Route path="/register" element={<UserRegister />}></Route>

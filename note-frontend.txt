@@ -20,3 +20,25 @@ sweet alert
 - referensi : https://sweetalert2.github.io/
 - npm install sweetalert2
 
+challenge 
+
+implement index path (sudah)
+- buat halaman path /
+- cek jika user belum login, redirect ke halaman login (cek token, get user)
+- jika user sudah login, redirect ke halaman dashboard contacts
+
+validasi session di dashboard
+- di semua halaman /dashboard
+- validasi jika user belum login, redirect ke halaman login
+
+tailwind css
+- perbaiki cara menggunakan tailwind css
+- referensi : https://tailwindcss.com/docs/installation/using-vite (tidak menggunakan cdn)
+
+reusable component
+- pisahkan beberapa bagian yang bisa dijadikan component sehingga bisa digunakan ulang tanpa harus membuat kode yang sama
+- misal, seperti Contact Card, Contact Form (Create/Edit), Address Form (Create & Edit), Paging dan lain lain
+
+Deploy 
+- deploy aplikasi frontend dan backend di server, agar bisa diakses via internet
+
