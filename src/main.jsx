@@ -17,6 +17,9 @@ import Home from "./components/Home";
 import ProtectedRoute from "./components/Middleware/ProtectedRoute";
 import GuestRoute from "./components/Middleware/GuestRoute";
 
+// import css tailwind
+import "./assets/index.css";
+
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     {/* implementasi react router */}

@@ -3,7 +3,7 @@ import { Outlet, Link } from "react-router";
 export default function DashboardLayout() {
   return (
     <>
-      <div className="bg-gradient-to-br from-gray-900 to-gray-800 min-h-screen flex flex-col">
+      <div className="bg-linear-to-br from-gray-900 to-gray-800 min-h-screen flex flex-col">
         {/* Header with right-aligned menu */}
         <header className="bg-gradient shadow-lg">
           <div className="container mx-auto px-4 py-4 flex justify-between items-center">
@@ -31,7 +31,7 @@ export default function DashboardLayout() {
         </header>
 
         {/* Main content */}
-        <main className="container mx-auto px-4 py-8 flex-grow">
+        <main className="container mx-auto px-4 py-8 grow">
           {/* kustomisasi konten di setiap halaman */}
           <Outlet></Outlet>
           {/* Footer */}

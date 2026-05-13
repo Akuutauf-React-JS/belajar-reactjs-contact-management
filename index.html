@@ -8,7 +8,9 @@
     <title>Contact Management - Akuutauf</title>
 
     <!-- Include Tailwind CSS via CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- CDN tailwind kurang cocok untuk aplikasi SPA, dapat mempengaruhi performa -->
+    <!-- Gunakan Library tailwind dari vite -->
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -17,7 +19,9 @@
 
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-    <script>
+
+    <!-- karena pakai library untuk tailwind, maka tidak perlu konfigurasi manual -->
+    <!-- <script>
       tailwind.config = {
         theme: {
           extend: {
@@ -30,7 +34,8 @@
           },
         },
       };
-    </script>
+    </script> -->
+
     <style>
       .bg-gradient {
         background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
