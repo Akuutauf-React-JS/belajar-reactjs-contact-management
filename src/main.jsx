@@ -1,10 +1,10 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router";
-import Layout from "./components/Layout";
+import Layout from "./Layouts/Layout";
 import UserRegister from "./components/User/UserRegister";
 import UserLogin from "./components/User/UserLogin";
-import DashboardLayout from "./components/DashboardLayout";
+import DashboardLayout from "./Layouts/DashboardLayout";
 import UserProfile from "./components/User/UserProfile";
 import UserLogout from "./components/User/UserLogout";
 import ContactCreate from "./components/Contact/ContactCreate";
@@ -13,9 +13,9 @@ import ContactEdit from "./components/Contact/ContactEdit";
 import ContactDetail from "./components/Contact/ContactDetail";
 import AddressCreate from "./components/Address/AddressCreate";
 import AddressEdit from "./components/Address/AddressEdit";
-import Home from "./components/Home";
-import ProtectedRoute from "./components/Middleware/ProtectedRoute";
-import GuestRoute from "./components/Middleware/GuestRoute";
+import Home from "./Middleware/Home";
+import ProtectedRoute from "./Middleware/ProtectedRoute";
+import GuestRoute from "./Middleware/GuestRoute";
 
 // import css tailwind
 import "./assets/index.css";

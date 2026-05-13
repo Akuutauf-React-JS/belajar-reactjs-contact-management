@@ -22,16 +22,16 @@ sweet alert
 
 challenge 
 
-1. implement index path (sudah)
+1. implement index path (selesai)
 - buat halaman path /
 - cek jika user belum login, redirect ke halaman login (cek token, get user)
 - jika user sudah login, redirect ke halaman dashboard contacts
 
-2. validasi session di dashboard (sudah)
+2. validasi session di dashboard (selesai)
 - di semua halaman /dashboard
 - validasi jika user belum login, redirect ke halaman login
 
-3. tailwind css
+3. tailwind css (selesai)
 - perbaiki cara menggunakan tailwind css
 - referensi : https://tailwindcss.com/docs/installation/using-vite (tidak menggunakan cdn)
 
@@ -41,7 +41,7 @@ cara menyelesaikan challenge 3 :
 - tambahkan plugin tailwindcss
 - import tailwindcss di index.css
 
-reusable component
+4. reusable component (selesai)
 - pisahkan beberapa bagian yang bisa dijadikan component sehingga bisa digunakan ulang tanpa harus membuat kode yang sama
 - misal, seperti Contact Card, Contact Form (Create/Edit), Address Form (Create & Edit), Paging dan lain lain
 

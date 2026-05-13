@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLocalStorage } from "react-use";
-import { userDetail } from "../../lib/api/UserApi";
+import { userDetail } from "../lib/api/UserApi";
 import { Navigate, Outlet } from "react-router";
 
 export default function GuestRoute() {

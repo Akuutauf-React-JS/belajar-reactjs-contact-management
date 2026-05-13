@@ -3,6 +3,8 @@ import { useEffectOnce, useLocalStorage } from "react-use";
 import { contactDelete, contactList } from "../../lib/api/ContactApi";
 import { alertConfirm, alertError, alertSuccess } from "../../lib/alert";
 import { Link } from "react-router";
+import ContactPagination from "./ui/ContactPagination";
+import SearchContactForm from "./ui/SearchContactForm";
 
 export default function ContactList() {
   // menyiapkan data state yang diperlukan
@@ -153,92 +155,8 @@ export default function ContactList() {
           <h1 className="text-2xl font-bold text-white">My Contacts</h1>
         </div>
 
-        {/* Search form */}
-        <div className="bg-gray-800 bg-opacity-80 rounded-xl shadow-custom border border-gray-700 p-6 mb-8 animate-fade-in">
-          <div className="flex items-center justify-between mb-4">
-            <div className="flex items-center">
-              <i className="fas fa-search text-blue-400 mr-3" />
-              <h2 className="text-xl font-semibold text-white">Search Contacts</h2>
-            </div>
-            <button type="button" id="toggleSearchForm" className="text-gray-300 hover:text-white hover:bg-gray-700 p-2 rounded-full focus:outline-none transition-all duration-200">
-              <i className="fas fa-chevron-down text-lg" id="toggleSearchIcon" />
-            </button>
-          </div>
-          <div id="searchFormContent" className="mt-4">
-            <form onSubmit={handleSearchContacts}>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-                <div>
-                  <label htmlFor="search_name" className="block text-gray-300 text-sm font-medium mb-2">
-                    Name
-                  </label>
-                  <div className="relative">
-                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                      <i className="fas fa-user text-gray-500" />
-                    </div>
-                    <input
-                      type="text"
-                      id="search_name"
-                      name="search_name"
-                      className="w-full pl-10 pr-3 py-3 bg-gray-700 bg-opacity-50 border border-gray-600 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200"
-                      placeholder="Search by name"
-                      value={name}
-                      onChange={(e) => setName(e.target.value)}
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <label htmlFor="search_email" className="block text-gray-300 text-sm font-medium mb-2">
-                    Email
-                  </label>
-                  <div className="relative">
-                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                      <i className="fas fa-envelope text-gray-500" />
-                    </div>
-                    <input
-                      type="text"
-                      id="search_email"
-                      name="search_email"
-                      className="w-full pl-10 pr-3 py-3 bg-gray-700 bg-opacity-50 border border-gray-600 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200"
-                      placeholder="Search by email"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <label htmlFor="search_phone" className="block text-gray-300 text-sm font-medium mb-2">
-                    Phone
-                  </label>
-                  <div className="relative">
-                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                      <i className="fas fa-phone text-gray-500" />
-                    </div>
-                    <input
-                      type="text"
-                      id="search_phone"
-                      name="search_phone"
-                      className="w-full pl-10 pr-3 py-3 bg-gray-700 bg-opacity-50 border border-gray-600 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200"
-                      placeholder="Search by phone"
-                      value={phone}
-                      onChange={(e) => setPhone(e.target.value)}
-                    />
-                  </div>
-                </div>
-              </div>
-
-              <div className="mt-5 text-right">
-                <button
-                  type="submit"
-                  className="px-5 py-3 bg-gradient text-white rounded-lg hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-800 transition-all duration-200 font-medium shadow-lg transform hover:-translate-y-0.5"
-                >
-                  <i className="fas fa-search mr-2" /> Search
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
+        {/* reusable component: search contact form */}
+        <SearchContactForm name={name} setName={setName} email={email} setEmail={setEmail} phone={phone} setPhone={setPhone} onSubmit={handleSearchContacts}></SearchContactForm>
 
         {/* Contact cards grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -310,68 +228,8 @@ export default function ContactList() {
           ))}
         </div>
 
-        {/* Pagination */}
-        <div className="mt-10 flex justify-center">
-          <nav className="flex items-center space-x-3 bg-gray-800 bg-opacity-80 rounded-xl shadow-custom border border-gray-700 p-3 animate-fade-in">
-            {/* Previous */}
-            {/* menambahkan pengecekan */}
-            {/* ketika page previous ditekan, maka data state page sekarang, akan berkurang 1 */}
-            {page > 1 && (
-              <a
-                href="#"
-                onClick={() => handlePageChange(page - 1)}
-                className="px-4 py-2 bg-gray-700 text-gray-300 rounded-lg hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-800 transition-all duration-200 flex items-center"
-              >
-                <i className="fas fa-chevron-left mr-2" /> Previous
-              </a>
-            )}
-
-            {/* melakukan iterasi untuk pages */}
-            {getPages().map((value) => {
-              // menggunakan kurung kurawal pada iterasinya, karena kita melakukan pengecekan terlebih dahulu untuk memeriksa, apakah page saat ini adalah active (yang dipilih) atau tidak
-              if (value === page) {
-                // kalau sama dengan page saat ini yang sedang aktif, maka return kan component page yang active
-                // kalau nomor page ditekan, maka data akan menyesuaikan dengan page tersebut
-                return (
-                  <a
-                    key={value}
-                    href="#"
-                    onClick={() => handlePageChange(value)}
-                    className="px-4 py-2 bg-gradient text-white rounded-lg hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-800 transition-all duration-200 font-medium shadow-md"
-                  >
-                    {value}
-                  </a>
-                );
-              } else {
-                // kalau tidak sama, maka return untuk component page yang tidak aktif
-                // kalau nomor page ditekan, maka data akan menyesuaikan dengan page tersebut
-                return (
-                  <a
-                    key={value}
-                    href="#"
-                    onClick={() => handlePageChange(value)}
-                    className="px-4 py-2 bg-gray-700 text-gray-300 rounded-lg hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-800 transition-all duration-200"
-                  >
-                    {value}
-                  </a>
-                );
-              }
-            })}
-
-            {/* Next */}
-            {/* melakukan pengecekan */}
-            {/* ketika page next ditekan, maka data state page sekarang, akan bertambah 1 */}
-            {page < totalPage && (
-              <a
-                href="#"
-                onClick={() => handlePageChange(page + 1)}
-                className="px-4 py-2 bg-gray-700 text-gray-300 rounded-lg hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-800 transition-all duration-200 flex items-center"
-              >
-                Next <i className="fas fa-chevron-right ml-2" />
-              </a>
-            )}
-          </nav>
-        </div>
+        {/* reusable component: contact pagination */}
+        <ContactPagination page={page} totalPage={totalPage} onClick={handlePageChange} getPages={getPages}></ContactPagination>
       </div>
     </>
   );
